@@ -1,0 +1,217 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "帮帮群promax ",
+				"navigationBarBackgroundColor":"#127c72",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path": "pages/lifestyle/lifestyle",
+			"style": {
+				"navigationBarTitleText": "生活",
+				"enablePullDownRefresh": false,
+				"navigationBarBackgroundColor":"#127c72",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path": "pages/post/post",
+			"style": {
+				"navigationBarTitleText": "管理员帖子管理",
+				"enablePullDownRefresh": false,
+				"navigationBarBackgroundColor":"#127c72",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path": "pages/study/study",
+			"style": {
+				"navigationBarTitleText": "学习",
+				"enablePullDownRefresh": false,
+				"navigationBarBackgroundColor":"#127c72",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path": "pages/personal/personal",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"enablePullDownRefresh": false,
+				"navigationBarBackgroundColor":"#127c72",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path" : "pages/login/login",
+			"style" : 
+			{
+				"navigationBarTitleText" : "登陆",
+				"enablePullDownRefresh" : false,
+				"navigationBarBackgroundColor":"#127c72",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path" : "pages/register/register",
+			"style" : 
+			{
+				"navigationBarTitleText" : "注册",
+				"enablePullDownRefresh" : false,
+				"navigationBarBackgroundColor":"#127c72",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path" : "pages/admin-message/admin-message",
+			"style" : 
+			{
+				"navigationBarTitleText" : "管理消息",
+				"enablePullDownRefresh" : false,
+				"navigationBarBackgroundColor":"#127c72",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path" : "pages/edit-personal/edit-personal",
+			"style" : 
+			{
+				"navigationBarTitleText" : "修改个人信息",
+				"enablePullDownRefresh" : false,
+				"navigationBarBackgroundColor":"#127c72",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path" : "pages/show-all-post/show-all-post",
+			"style" : 
+			{
+				"navigationBarTitleText" : "所有帖子",
+				"enablePullDownRefresh" : false,
+				"navigationBarBackgroundColor":"#127c72",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path" : "pages/life-daiqu-detail/life-daiqu-detail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "代取详情",
+				"enablePullDownRefresh" : false,
+				"navigationBarBackgroundColor":"#127c72",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path" : "pages/pin-che-detail/pin-che-detail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "拼车详情",
+				"enablePullDownRefresh" : false,
+				"navigationBarBackgroundColor":"#127c72",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path" : "pages/er-shou-detail/er-shou-detail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "二手交易详情",
+				"enablePullDownRefresh" : false,
+				"navigationBarBackgroundColor":"#127c72",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path" : "pages/qi-ta-detail/qi-ta-detail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "其他详情",
+				"enablePullDownRefresh" : false,
+				"navigationBarBackgroundColor":"#127c72",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path" : "pages/study-ziliao-detail/study-ziliao-detail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "学习资料",
+				"enablePullDownRefresh" : false,
+				"navigationBarBackgroundColor":"#127c72",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path" : "pages/bi-sai-detai/bi-sai-detai",
+			"style" : 
+			{
+				"navigationBarTitleText" : "比赛招募",
+				"enablePullDownRefresh" : false,
+				"navigationBarBackgroundColor":"#127c72",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path" : "pages/study-other-detail/study-other-detail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "其他",
+				"enablePullDownRefresh" : false,
+				"navigationBarBackgroundColor":"#127c72",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path" : "pages/push-post/push-post",
+			"style" : 
+			{
+				"navigationBarTitleText" : "发帖",
+				"enablePullDownRefresh" : false,
+				"navigationBarBackgroundColor":"#127c72",
+				"navigationBarTextStyle":"white"
+			}
+		}
+	],
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#127c72",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+			"pagePath": "pages/index/index",
+			"iconPath": "static/zhuye.png",
+			"selectedIconPath": "static/zy_s.png",
+			"text": "主页"
+		}, {
+			"pagePath": "pages/lifestyle/lifestyle",
+			"iconPath": "static/cf.png",
+			"selectedIconPath": "static/cf_s.png",
+			"text": "生活"
+		}, {
+			"pagePath": "pages/push-post/push-post",
+			"iconPath": "static/push.png",
+			"selectedIconPath": "static/push_s.png",
+			"text": "发帖"
+		}, {
+			"pagePath": "pages/study/study",
+			"iconPath": "static/xl.png",
+			"selectedIconPath": "static/xl_s.png",
+			"text": "学习"
+		}, {
+			"pagePath": "pages/personal/personal",
+			"iconPath": "static/my.png",
+			"selectedIconPath": "static/my_s.png",
+			"text": "我的"
+		}]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {}
+}
