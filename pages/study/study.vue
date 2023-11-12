@@ -17,13 +17,13 @@
 			<!-- 分页tab -->
 			<view v-show="current==1">
 				<!-- 单个项目 -->
-				<view v-for="item in this.list" @click="handlerToPath(`/pages/study-ziliao-detail/study-ziliao-detail`,item)"
+				<view v-for="(item,index) in this.list" @click="handlerToPath(`/pages/study-ziliao-detail/study-ziliao-detail`,item)"
 					style="display: flex;border-radius: 60rpx;overflow: hidden;margin-bottom: 20rpx;"
 					class="bt_primary">
 					<view style="display: flex;flex-direction: column;align-items: center;padding: 40rpx;"
 						class="bt_right_primary">
-						<u-avatar size="150rpx" :src="userava"></u-avatar>
-						<text style="font-size: 24rpx; text-align: center;margin-top: 10rpx;">昵称:{{user.nickname}}</text>
+						<u-avatar size="150rpx" :src="messageavaurl[index]"></u-avatar>
+						<text style="font-size: 24rpx; text-align: center;margin-top: 10rpx;">{{messageuser[index].nickname}}</text>
 					</view>
 					<view style="display: flex;flex-direction: column;flex: 1;font-weight: 600;padding: 0 40rpx;"
 						class="">
@@ -37,13 +37,13 @@
 			</view>
 			<view v-show="current==2">
 				<!-- 单个项目 -->
-				<view v-for="item in this.list" @click="handlerToPath(`/pages/bi-sai-detai/bi-sai-detai`,item)"
+				<view v-for="(item,index) in this.list" @click="handlerToPath(`/pages/bi-sai-detai/bi-sai-detai`,item)"
 					style="display: flex;border-radius: 60rpx;overflow: hidden;margin-bottom: 20rpx;"
 					class="bt_primary">
 					<view style="display: flex;flex-direction: column;align-items: center;padding: 40rpx;"
 						class="bt_right_primary">
-						<u-avatar size="150rpx" :src="userava"></u-avatar>
-						<text style="font-size: 24rpx; text-align: center;margin-top: 10rpx;">昵称:{{user.nickname}}</text>
+						<u-avatar size="150rpx" :src="messageavaurl[index]"></u-avatar>
+						<text style="font-size: 24rpx; text-align: center;margin-top: 10rpx;">{{messageuser[index].nickname}}</text>
 					</view>
 					<view style="display: flex;flex-direction: column;flex: 1;font-weight: 600;padding: 0 40rpx;"
 						class="">
@@ -56,13 +56,13 @@
 			</view>
 			<view v-show="current==3">
 				<!-- 单个项目 -->
-				<view v-for="item in this.list" @click="handlerToPath(`/pages/study-other-detail/study-other-detail`,item)"
+				<view v-for="(item,index) in this.list" @click="handlerToPath(`/pages/study-other-detail/study-other-detail`,item)"
 					style="display: flex;border-radius: 60rpx;overflow: hidden;margin-bottom: 20rpx;"
 					class="bt_primary">
 					<view style="display: flex;flex-direction: column;align-items: center;padding: 40rpx;"
 						class="bt_right_primary">
-						<u-avatar size="150rpx" :src="userava"></u-avatar>
-						<text style="font-size: 24rpx; text-align: center;margin-top: 10rpx;">昵称:{{user.nickname}}</text>
+						<u-avatar size="150rpx" :src="messageavaurl[index]"></u-avatar>
+						<text style="font-size: 24rpx; text-align: center;margin-top: 10rpx;">{{messageuser[index].nickname}}</text>
 					</view>
 					<view style="display: flex;flex-direction: column;flex: 1;font-weight: 600;padding: 0 40rpx;"
 						class="">
@@ -174,7 +174,7 @@
 			getUserById(userid) {
 				return new Promise((resolve, reject) => {
 					uni.request({
-						url: 'http://localhost:8088/ssmDemo_war/user/info',
+						url: 'http://localhost:8088/ssmDemo_war/user/get',
 						method: 'GET',
 						data: {
 							id: userid,
@@ -236,8 +236,13 @@
 				  },
 				  success: (res) => {
 					if (res.statusCode === 200) {
+						this.list=[],
+						this.messageList=[],
+						this.messageuser=[],
+						this.messageavaurl=[],
 					  // 请求成功
 					  this.list = res.data; // 注意这里将返回数据赋值给this.list
+					  this.getMessagerAva(this.list)
 					  // console.log(this.list),
 					  console.log('请求成功', res.data);
 					  // 这里可以处理请求成功后的逻辑

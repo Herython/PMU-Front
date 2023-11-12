@@ -237,14 +237,35 @@
 			         'content-type': 'application/x-www-form-urlencoded' // 请求头部信息
 			     },
 			     success: function (res) {
-			 		uni.navigateTo({
-			 			url:"/pages/post/post"
-			 		})
 			         // 请求成功时的回调函数
 			         if (res.statusCode === 200) {
 			             // 请求成功
-			             console.log('注册成功', res.data);
+			             console.log('请求成功', res.data);
 			             // 这里可以处理登录成功后的逻辑
+						 if(res.data.message!="用户已被注册"){
+							 uni.showLoading({
+							 		title: "注册成功！"
+							 	})
+							 					
+							 // 延迟一定时间后隐藏弹框
+							 	setTimeout(() => {
+							 	  uni.hideLoading()
+							 	}, 300); // 2000毫秒，即2秒
+							uni.navigateTo({
+								url:"/pages/login/login"
+							})
+						 }
+						 else{
+							// 用户已被注册，显示提示弹框
+							uni.showLoading({
+								title: "用户已被注册！"
+							})
+					
+						// 延迟一定时间后隐藏弹框
+							setTimeout(() => {
+							  uni.hideLoading()
+							}, 500); // 2000毫秒，即2秒
+						 }
 			         } else {
 			             console.log('请求失败', res.statusCode, res.data);
 			             // 处理请求失败的逻辑

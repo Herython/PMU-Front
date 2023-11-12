@@ -17,12 +17,12 @@
 			<!-- 分页tab -->
 			<view v-show="current==1">
 				<!-- 单个项目 -->
-				<view v-for="item in this.list" @click="handlerToPath(`/pages/life-daiqu-detail/life-daiqu-detail`,item)"
+				<view v-for="(item,index) in this.list" @click="handlerToPath(`/pages/life-daiqu-detail/life-daiqu-detail`,item)"
 					style="display: flex;border-radius: 60rpx;overflow: hidden;margin-bottom: 20rpx;"
 					class="bt_primary">
 					<view style="display: flex;flex-direction: column;align-items: center;padding: 20rpx;" class="">
-						<u-avatar size="150rpx" :src="userava"></u-avatar>
-						<text style="font-size: 24rpx; text-align: center;margin-top: 10rpx;">昵称:{{user.nickname}}</text>
+						<u-avatar size="150rpx" :src="messageavaurl[index]"></u-avatar>
+						<text style="font-size: 24rpx; text-align: center;margin-top: 10rpx;">{{messageuser[index].nickname}}</text>
 					</view>
 					<view style="display: flex;flex-direction: column;flex: 1;font-weight: 600;padding: 0 40rpx;"
 						class="">
@@ -33,12 +33,12 @@
 			</view>
 			<view v-show="current==2">
 				<!-- 单个项目 -->
-				<view v-for="item in this.list" @click="handlerToPath(`/pages/pin-che-detail/pin-che-detail`,item)"
+				<view v-for="(item,index) in this.list" @click="handlerToPath(`/pages/pin-che-detail/pin-che-detail`,item)"
 					style="display: flex;border-radius: 60rpx;overflow: hidden;margin-bottom: 20rpx;"
 					class="bt_primary">
 					<view style="justify-content: center;display: flex;flex-direction: column;align-items: center;padding: 20rpx;" class="">
-						<u-avatar size="150rpx" :src="userava"></u-avatar>
-						<text style="font-size: 24rpx; text-align: center;margin-top: 10rpx;">昵称:{{user.nickname}}</text>
+						<u-avatar size="150rpx" :src="messageavaurl[index]"></u-avatar>
+						<text style="font-size: 24rpx; text-align: center;margin-top: 10rpx;">{{messageuser[index].nickname}}</text>
 					</view>
 					<view style="display: flex;flex-direction: column;flex: 1;font-weight: 600;padding: 0 40rpx;"
 						class="">
@@ -51,12 +51,12 @@
 			</view>
 			<view v-show="current==3">
 				<!-- 单个项目 -->
-				<view v-for="item in this.list" @click="handlerToPath(`/pages/er-shou-detail/er-shou-detail`,item)"
+				<view v-for="(item,index) in this.list" @click="handlerToPath(`/pages/er-shou-detail/er-shou-detail`,item)"
 					style="display: flex;border-radius: 60rpx;overflow: hidden;margin-bottom: 20rpx;"
 					class="bt_primary">
 					<view style="display: flex;flex-direction: column;align-items: center;padding: 20rpx;" class="">
-						<u-avatar size="150rpx" :src="userava"></u-avatar>
-						<text style="font-size: 24rpx; text-align: center;margin-top: 10rpx;">昵称:{{user.nickname}}</text>
+						<u-avatar size="150rpx" :src="messageavaurl[index]"></u-avatar>
+						<text style="font-size: 24rpx; text-align: center;margin-top: 10rpx;">{{messageuser[index].nickname}}</text>
 					</view>
 					<view style="display: flex;flex-direction: column;flex: 1;font-weight: 600;padding: 0 40rpx;"
 						class="">
@@ -68,12 +68,12 @@
 			</view>
 			<view v-show="current==4">
 			<!-- 单个项目 -->
-			<view v-for="item in this.list" @click="handlerToPath(`/pages/qi-ta-detail/qi-ta-detail`,item)"
+			<view v-for="(item,index) in this.list" @click="handlerToPath(`/pages/qi-ta-detail/qi-ta-detail`,item)"
 				style="display: flex;border-radius: 60rpx;overflow: hidden;margin-bottom: 20rpx;"
 				class="bt_primary">
 				<view style="display: flex;flex-direction: column;align-items: center;padding: 20rpx;" class="">
-						<u-avatar size="150rpx" :src="userava"></u-avatar>
-					<text style="font-size: 24rpx; text-align: center;margin-top: 10rpx;">昵称:{{user.nickname}}</text>
+						<u-avatar size="150rpx" :src="messageavaurl[index]"></u-avatar>
+					<text style="font-size: 24rpx; text-align: center;margin-top: 10rpx;">{{messageuser[index].nickname}}</text>
 				</view>
 				<view style="display: flex;flex-direction: column;flex: 1;font-weight: 600;padding: 0 40rpx;"
 					class="">
@@ -91,8 +91,9 @@
 <script>
 	export default {
 		onLoad: async function (option) {
-			this.change(1)
-			// console.log(this)			
+			this.change(1),
+			// console.log(this)	
+			console.log("用户们",this.messageavaurl)
 			try {
 				this.user = await this.getUser();
 				console.log("this.user.nickname",this.user.nickname);
@@ -124,8 +125,7 @@
 					type:"生活类·其他"
 				}],
 				curType:"",
-				list:[]	,
-				
+				list:[]	,			
 				base64String:'',//储存转换后图片URL
 				customStyle: {
 								 // 注意驼峰命名，并且值必须用引号包括，因为这是对象
@@ -137,17 +137,21 @@
 				user:"",
 				userava:"",
 				messageuser: [],
-				messageavaurl: []
+				messageavaurl: [],
 			}
 		},
 		methods: {
 			getMessagerAva: async function (messageList) {
+				
 				for (var i = 0; i < messageList.length; i++) {
+					console.log("messageList[i].userid",messageList[i].userid)
 					this.messageuser.push(await this.getUserById(messageList[i].userid));
+					console.log("获取到的用户",this.messageuser)
 				}
 				for (var i = 0; i < this.messageuser.length; i++) {
 					this.messageavaurl.push('data:image/jpg;base64,'+ this.messageuser[i].avaurl)
 				}
+				// console.log("messageavaurl",this.messageavaurl)	
 			},
 			getUser() {
 				return new Promise((resolve, reject) => {
@@ -186,7 +190,7 @@
 			getUserById(userid) {
 				return new Promise((resolve, reject) => {
 					uni.request({
-						url: 'http://localhost:8088/ssmDemo_war/user/info',
+						url: 'http://localhost:8088/ssmDemo_war/user/get',
 						method: 'GET',
 						data: {
 							id: userid,
@@ -201,7 +205,8 @@
 							if (res.statusCode === 200) {
 								// 请求成功
 								const user = res.data;
-								console.log('获取用户请求成功', user);
+								// console.log('获取用户请求成功', userid);
+								// console.log('获取用户请求成功', user);
 								resolve(user); // 将user传递给resolve
 			
 							} else {
@@ -232,41 +237,48 @@
 			    this.change(index);
 			},
 			  change(index) {
-			    this.current = index;
-			    this.curType = this.tabList[index - 1].type,
+				this.current = index;
+				this.curType = this.tabList[index - 1].type,
 				console.log(this.curType),
-			    // 发起网络请求
-			    uni.request({
-			      url: 'http://localhost:8088/ssmDemo_war/post/opt',
-			      method: 'GET',
-			      data: {
-			        type: this.curType,
-			      },
-			      header: {
-			        'content-type': 'application/x-www-form-urlencoded',
-			        'Access-Control-Allow-Origin': '*',
-			        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-			        'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type',
-			      },
-			      success: (res) => {
-			        if (res.statusCode === 200) {
-			          // 请求成功
-			          this.list = res.data; // 注意这里将返回数据赋值给this.list
+				// 发起网络请求
+				uni.request({
+				  url: 'http://localhost:8088/ssmDemo_war/post/opt',
+				  method: 'GET',
+				  data: {
+					type: this.curType,
+				  },
+				  header: {
+					'content-type': 'application/x-www-form-urlencoded',
+					'Access-Control-Allow-Origin': '*',
+					'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+					'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type',
+				  },
+				  success: (res) => {
+					if (res.statusCode === 200) {
+						this.list=[],
+						this.messageList=[],
+						this.messageuser=[],
+						this.messageavaurl=[],
+						
+					  // 请求成功
+					  this.list = res.data; // 注意这里将返回数据赋值给this.list
+					  this.getMessagerAva(this.list)
 					  // console.log(this.list),
-			          console.log('请求成功', res.data);
-			          // 这里可以处理请求成功后的逻辑
-			        } else {
-			          console.log('请求失败', res.statusCode, res.data);
-			          // 处理请求失败的逻辑
-			        }
-			      },
-			      fail: (err) => {
-			        // 请求失败时的回调函数
-			        console.error('请求失败', err);
-			        // 处理请求失败的逻辑
-			      },
-			    });
-			  }
+					  console.log('请求成功', res.data);
+					  // 这里可以处理请求成功后的逻辑
+					} else {
+					  console.log('请求失败', res.statusCode, res.data);
+					  // 处理请求失败的逻辑
+					}
+				  },
+				  fail: (err) => {
+					// 请求失败时的回调函数
+					console.error('请求失败', err);
+					// 处理请求失败的逻辑
+				  },
+				});
+				
+			}
 		},
 	}
 </script>

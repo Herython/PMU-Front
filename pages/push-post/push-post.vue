@@ -27,14 +27,7 @@
 					<u--textarea v-model="form.descript" placeholder="请输入内容"></u--textarea>
 				</u-form-item>
 				<u-form-item label="上传图片" prop="form.file" borderBottom ref="descript">
-					<u-upload :fileList="form.file" @afterRead="afterReadImg"  name="1" multiple
-						:maxCount="10"></u-upload>
-						<!-- 后加内容@he -->
-					<!-- <view v-if="form.file && form.file.length">
-						<view v-for="(item,index) in form.file" :key="index">
-							<image :src="item.url" mode="aspectFill" style="width: 100px; height: 100px; margin-top: 10px"></image>
-						</view>
-					</view>	 -->			
+					<u-upload :fileList="imgUrl" @afterRead="afterReadImg"  name="1" multiple :maxCount="10"></u-upload>
 				</u-form-item>
 			</u--form>
 		</view>
@@ -85,6 +78,8 @@
 					descript:"",
 					// file:[],
 					file:"",
+					imgUrl: "",
+					blob:""
 				}
 			}
 		},
@@ -210,8 +205,10 @@
 			async afterReadImg(event) {
 			  try {
 				const base64Data = await this.getBlobData(event.file[0].url);
+				this.blob=event.file[0].url
 				this.form.file = base64Data;
-				console.log(this.form.file)
+				this.imgUrl=base64Data;
+				console.log(this.imgUrl)
 			  } catch (error) {
 				console.error('Error: ' + error);
 			  }

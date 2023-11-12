@@ -28,7 +28,7 @@
 				</view>
 			</view>
 			<view @click="handlerToAll" style="border-color: #215fa5;;margin-top: 60rpx;;justify-content: center;;text-align: center;height: 80rpx;display: flex;;align-items: center;border-radius: 40rpx;" class="bt_primary">查看所有发布的帖子</view>
-		
+			<view @click="logout" style="border-color: #215fa5;;margin-top: 60rpx;;justify-content: center;;text-align: center;height: 80rpx;display: flex;;align-items: center;border-radius: 40rpx;" class="bt_primary">退出登录</view>
 		</view>
 	</view>
 </template>
@@ -167,6 +167,11 @@
 				uni.navigateTo({
 					url:"/pages/show-all-post/show-all-post",
 					
+				})
+			},
+			logout(){
+				uni.navigateTo({
+					url:"/pages/login/login",
 				})
 			},
 			handlerToEdit(){

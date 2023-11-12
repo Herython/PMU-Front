@@ -93,7 +93,7 @@
 			this.getMessages();
 			
 			try {
-				this.user = await this.getUser();
+				this.user = await this.getUserById(this.item.userid);
 				this.userava = 'data:image/jpg;base64,' + this.user.avaurl;
 				// console.log('this.userava:', this.userava);
 			} catch (error) {
@@ -301,7 +301,7 @@
 			getUserById(userid) {
 				return new Promise((resolve, reject) => {
 					uni.request({
-						url: 'http://localhost:8088/ssmDemo_war/user/info',
+						url: 'http://localhost:8088/ssmDemo_war/user/get',
 						method: 'GET',
 						data: {
 							id: userid,
